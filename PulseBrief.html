@@ -1,0 +1,2011 @@
+<!DOCTYPE html>
+<html lang="en" data-palette="orangish-ember" data-polarity="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PulseBrief — Sat, 21 Nov 2026 · Chennai</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* ==========================================================================
+       DESIGN TOKENS & THEME POLARITIES (DARK DEFAULT + LIGHT)
+       ========================================================================== */
+    :root,
+    [data-polarity="dark"] {
+      --bg-app: #0C0D10;
+      --bg-surface: #14161B;
+      --bg-surface-2: #1B1E25;
+      --bg-surface-3: #222630;
+      --text-primary: #F4F5F8;
+      --text-secondary: #B2B8C6;
+      --text-muted: #7C8394;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-strong: rgba(255, 255, 255, 0.16);
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.45);
+      --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.5);
+      --accent: #F06424;
+      --accent-hover: #FF7535;
+      --accent-soft: rgba(240, 100, 36, 0.16);
+      --accent-border: rgba(240, 100, 36, 0.42);
+      --accent-text: #FF8A52;
+      --accent-contrast: #FFFFFF;
+      --positive: #22C55E;
+      --negative: #EF4444;
+      --warning: #F59E0B;
+    }
+
+    [data-polarity="light"] {
+      --bg-app: #F6F7F9;
+      --bg-surface: #FFFFFF;
+      --bg-surface-2: #F0F2F6;
+      --bg-surface-3: #E6E9EF;
+      --text-primary: #12141A;
+      --text-secondary: #485062;
+      --text-muted: #6C7588;
+      --border-subtle: rgba(18, 20, 26, 0.08);
+      --border-strong: rgba(18, 20, 26, 0.16);
+      --shadow-sm: 0 1px 2px rgba(18, 20, 26, 0.06);
+      --shadow-md: 0 8px 24px rgba(18, 20, 26, 0.1);
+      --accent: #D94E14;
+      --accent-hover: #B83E0B;
+      --accent-soft: rgba(217, 78, 20, 0.11);
+      --accent-border: rgba(217, 78, 20, 0.34);
+      --accent-text: #C2410C;
+      --accent-contrast: #FFFFFF;
+      --positive: #15803D;
+      --negative: #B91C1C;
+      --warning: #B45309;
+    }
+
+    /* Palette presets */
+    [data-palette="orangish-ember"][data-polarity="dark"] {
+      --accent: #F06424; --accent-hover: #FF7535; --accent-soft: rgba(240, 100, 36, 0.16); --accent-border: rgba(240, 100, 36, 0.42); --accent-text: #FF8A52;
+    }
+    [data-palette="orangish-ember"][data-polarity="light"] {
+      --accent: #D94E14; --accent-hover: #B83E0B; --accent-soft: rgba(217, 78, 20, 0.11); --accent-border: rgba(217, 78, 20, 0.34); --accent-text: #C2410C;
+    }
+    [data-palette="ocean-pulse"][data-polarity="dark"] {
+      --accent: #38BDF8; --accent-hover: #5CC8FA; --accent-soft: rgba(56, 189, 248, 0.15); --accent-border: rgba(56, 189, 248, 0.4); --accent-text: #7DD3FC;
+    }
+    [data-palette="ocean-pulse"][data-polarity="light"] {
+      --accent: #0284C7; --accent-hover: #0369A1; --accent-soft: rgba(2, 132, 199, 0.11); --accent-border: rgba(2, 132, 199, 0.34); --accent-text: #0369A1;
+    }
+    [data-palette="emerald-wire"][data-polarity="dark"] {
+      --accent: #34D399; --accent-hover: #55E0AE; --accent-soft: rgba(52, 211, 153, 0.15); --accent-border: rgba(52, 211, 153, 0.4); --accent-text: #6EE7B7;
+    }
+    [data-palette="emerald-wire"][data-polarity="light"] {
+      --accent: #059669; --accent-hover: #047857; --accent-soft: rgba(5, 150, 105, 0.11); --accent-border: rgba(5, 150, 105, 0.34); --accent-text: #047857;
+    }
+    [data-palette="violet-signal"][data-polarity="dark"] {
+      --accent: #A78BFA; --accent-hover: #BA9FFF; --accent-soft: rgba(167, 139, 250, 0.16); --accent-border: rgba(167, 139, 250, 0.42); --accent-text: #C4B5FD;
+    }
+    [data-palette="violet-signal"][data-polarity="light"] {
+      --accent: #7C3AED; --accent-hover: #6D28D9; --accent-soft: rgba(124, 58, 237, 0.11); --accent-border: rgba(124, 58, 237, 0.34); --accent-text: #6D28D9;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-app);
+      color: var(--text-primary);
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-size: 14px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    button, input, select {
+      font-family: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .app-shell {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 12px 14px 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    @media (min-width: 768px) {
+      .app-shell {
+        padding: 16px 20px 56px;
+        gap: 12px;
+      }
+    }
+
+    /* Compact 29px action buttons */
+    .pill-btn-29 {
+      height: 29px;
+      min-height: 29px;
+      padding: 0 11px;
+      border-radius: 999px;
+      border: 1px solid var(--border-strong);
+      background: var(--bg-surface-2);
+      color: var(--text-primary);
+      font-size: 12px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      white-space: nowrap;
+      transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    }
+
+    .pill-btn-29:hover {
+      background: var(--bg-surface-3);
+      border-color: var(--accent-border);
+    }
+
+    .pill-btn-29.active {
+      background: var(--accent-soft);
+      border-color: var(--accent-border);
+      color: var(--accent-text);
+    }
+
+    /* Header */
+    .site-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 8px 12px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      min-width: 0;
+    }
+
+    .brand-logo {
+      width: 26px;
+      height: 26px;
+      border-radius: 8px;
+      background: var(--accent);
+      color: var(--accent-contrast);
+      font-weight: 800;
+      font-size: 13px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .brand-title {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .datetime-badge {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px;
+      color: var(--text-secondary);
+      background: var(--bg-surface-2);
+      border: 1px solid var(--border-subtle);
+      padding: 3px 8px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    /* Single-line Weather & Compact 5-Day Forecast Strip */
+    .weather-strip {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 7px 11px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .weather-one-line {
+      margin: 0;
+      font-size: 12px;
+      line-height: 1.35;
+      color: var(--text-primary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .forecast-5day {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .forecast-5day::-webkit-scrollbar {
+      display: none;
+    }
+
+    .forecast-chip {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 10.5px;
+      color: var(--text-secondary);
+      background: var(--bg-surface-2);
+      border: 1px solid var(--border-subtle);
+      border-radius: 999px;
+      padding: 2px 8px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* Search & API Controls Panel */
+    .controls-panel {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 10px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .search-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .search-input-wrap {
+      position: relative;
+      flex: 1 1 220px;
+      min-width: 180px;
+    }
+
+    .search-input {
+      width: 100%;
+      height: 34px;
+      padding: 0 32px 0 11px;
+      border-radius: 10px;
+      border: 1px solid var(--border-strong);
+      background: var(--bg-surface-2);
+      color: var(--text-primary);
+      font-size: 13px;
+      outline: none;
+    }
+
+    .search-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px var(--accent-soft);
+    }
+
+    .clear-search-btn {
+      position: absolute;
+      right: 6px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      font-size: 13px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .clear-search-btn:hover {
+      background: var(--bg-surface-3);
+      color: var(--text-primary);
+    }
+
+    .tabs-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      padding-bottom: 2px;
+    }
+
+    .tabs-row::-webkit-scrollbar {
+      display: none;
+    }
+
+    .section-tab {
+      height: 29px;
+      padding: 0 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-surface-2);
+      color: var(--text-secondary);
+      font-size: 12px;
+      font-weight: 600;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .section-tab.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--accent-contrast);
+    }
+
+    .api-drawer {
+      display: none;
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 8px;
+      margin-top: 2px;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .api-drawer.open {
+      display: flex;
+    }
+
+    .api-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+
+    @media (min-width: 680px) {
+      .api-grid {
+        grid-template-columns: 170px 1fr 1fr auto;
+        align-items: end;
+      }
+    }
+
+    .field-label {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      font-size: 11px;
+      color: var(--text-secondary);
+      font-weight: 600;
+    }
+
+    .field-input, .field-select {
+      height: 31px;
+      padding: 0 9px;
+      border-radius: 8px;
+      border: 1px solid var(--border-strong);
+      background: var(--bg-surface-2);
+      color: var(--text-primary);
+      font-size: 12px;
+    }
+
+    /* Most Visited Topics Strip */
+    .visited-bar {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 7px 11px;
+    }
+
+    .visited-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-right: 2px;
+    }
+
+    .topic-chip {
+      height: 25px;
+      padding: 0 9px;
+      border-radius: 999px;
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-surface-2);
+      color: var(--text-secondary);
+      font-size: 11.5px;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .topic-chip:hover {
+      border-color: var(--accent-border);
+      color: var(--text-primary);
+    }
+
+    .topic-count {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 10px;
+      color: var(--accent-text);
+    }
+
+    /* Search Synthesis & Multi-Source Links */
+    .live-search-bar {
+      background: var(--bg-surface);
+      border: 1px solid var(--accent-border);
+      border-radius: 14px;
+      padding: 11px 13px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .live-search-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .synth-badge {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 10.5px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent-text);
+      border: 1px solid var(--accent-border);
+    }
+
+    .live-search-title {
+      margin: 0;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .synth-body {
+      margin: 0;
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+
+    .link-strip {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .ext-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 8px 4px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border-strong);
+      background: var(--bg-surface-2);
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .ext-chip a:hover {
+      color: var(--accent-text);
+    }
+
+    .frame-action-btn {
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid var(--accent-border);
+      background: var(--accent-soft);
+      color: var(--accent-text);
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .frame-action-btn:hover {
+      background: var(--accent);
+      color: var(--accent-contrast);
+    }
+
+    /* Embedded In-Frame Reader */
+    .inframe-viewer {
+      display: none;
+      flex-direction: column;
+      gap: 8px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+      border-radius: 14px;
+      padding: 11px 13px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .inframe-viewer.open {
+      display: flex;
+    }
+
+    .inframe-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .inframe-meta {
+      min-width: 0;
+      flex: 1;
+    }
+
+    .inframe-title {
+      margin: 0;
+      font-size: 13px;
+      font-weight: 700;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .inframe-url {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px;
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .inframe-notice {
+      font-size: 11px;
+      color: var(--text-secondary);
+      background: var(--bg-surface-2);
+      border-radius: 8px;
+      padding: 6px 9px;
+    }
+
+    .inframe-frame-wrap {
+      width: 100%;
+      height: 400px;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border-subtle);
+      background: #FFFFFF;
+    }
+
+    @media (min-width: 768px) {
+      .inframe-frame-wrap {
+        height: 480px;
+      }
+    }
+
+    .inframe-iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+
+    /* Stock Card (Shown only when searching a matching stock/ticker) */
+    .stock-spotlight {
+      background: var(--bg-surface);
+      border: 1px solid var(--accent-border);
+      border-radius: 14px;
+      padding: 12px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .stock-metrics {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+
+    @media (min-width: 640px) {
+      .stock-metrics {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    .metric-box {
+      background: var(--bg-surface-2);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 8px 10px;
+    }
+
+    .metric-label {
+      font-size: 10.5px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .metric-val {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 13px;
+      font-weight: 700;
+      margin-top: 2px;
+    }
+
+    /* Briefings Grid */
+    .briefings-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    @media (min-width: 680px) {
+      .briefings-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .story-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 12px 14px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 8px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .story-card:hover {
+      border-color: var(--border-strong);
+    }
+
+    .card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .source-tag {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent-text);
+      background: var(--accent-soft);
+      border: 1px solid var(--accent-border);
+      padding: 2px 8px;
+      border-radius: 999px;
+    }
+
+    .section-tag {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 10.5px;
+      color: var(--text-muted);
+    }
+
+    .story-headline {
+      margin: 0;
+      font-size: 14.5px;
+      font-weight: 700;
+      line-height: 1.35;
+      color: var(--text-primary);
+    }
+
+    .story-summary {
+      margin: 0;
+      font-size: 12.5px;
+      color: var(--text-secondary);
+      line-height: 1.45;
+    }
+
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+      padding-top: 4px;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .card-time {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .card-actions {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .bookmark-btn {
+      padding: 3px 9px;
+      border-radius: 999px;
+      border: 1px solid var(--border-strong);
+      background: var(--bg-surface-2);
+      color: var(--text-secondary);
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .bookmark-btn.saved {
+      background: var(--accent-soft);
+      border-color: var(--accent-border);
+      color: var(--accent-text);
+    }
+
+    .read-link {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--text-primary);
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-surface-2);
+    }
+
+    .read-link:hover {
+      border-color: var(--accent-border);
+      color: var(--accent-text);
+    }
+
+    mark {
+      background: var(--accent-soft);
+      color: var(--accent-text);
+      padding: 0 2px;
+      border-radius: 3px;
+      font-weight: 600;
+    }
+
+    .empty-state {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 22px 16px;
+      text-align: center;
+      color: var(--text-secondary);
+    }
+
+    /* Palette Modal */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.65);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      z-index: 50;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal-card {
+      width: 100%;
+      max-width: 420px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+      border-radius: 16px;
+      padding: 16px;
+      box-shadow: var(--shadow-md);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+
+    .palette-option {
+      padding: 9px 10px;
+      border-radius: 10px;
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-surface-2);
+      color: var(--text-primary);
+      font-size: 12px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-align: left;
+    }
+
+    .palette-option.active {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+    }
+
+    .swatch-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 999px;
+      flex-shrink: 0;
+    }
+
+    /* Toast Message */
+    .toast-bar {
+      position: fixed;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: var(--bg-surface-3);
+      color: var(--text-primary);
+      border: 1px solid var(--border-strong);
+      border-radius: 999px;
+      padding: 7px 14px;
+      font-size: 12px;
+      font-weight: 600;
+      box-shadow: var(--shadow-md);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      z-index: 60;
+      white-space: nowrap;
+      max-width: calc(100vw - 24px);
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .toast-bar.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <!-- Top Header -->
+    <header class="site-header" role="banner">
+      <div class="brand-group">
+        <div class="brand-logo" aria-hidden="true">P</div>
+        <h1 class="brand-title">PulseBrief</h1>
+        <span class="datetime-badge" id="live-datetime-badge">Sat, 21 Nov 2026 · 3:30 PM IST · Chennai</span>
+      </div>
+
+      <div class="header-actions" role="toolbar" aria-label="Briefing actions">
+        <button type="button" class="pill-btn-29" id="btn-saved-toggle" aria-pressed="false">
+          Saved (<span id="saved-count-label">0</span>)
+        </button>
+        <button type="button" class="pill-btn-29" id="btn-palette-open">Palette</button>
+        <button type="button" class="pill-btn-29" id="btn-refresh">Refresh</button>
+      </div>
+    </header>
+
+    <!-- 1-Line Chennai Weather & Compact 5-Day Forecast Strip -->
+    <section class="weather-strip" aria-label="Chennai Weather and 5-Day Forecast">
+      <p class="weather-one-line" id="chennai-one-line-weather">
+        Chennai, Tamil Nadu: 30°C (feels like 37°C), mostly cloudy, wind 7 mph from east, 77% humidity, 15% chance of rain; high 31°C, low 24°C (partly sunny)
+      </p>
+      <div class="forecast-5day" id="forecast-5day-strip" aria-label="5-Day Forecast">
+        <span class="forecast-chip">Sun Nov 22: 30°C/24°C partly sunny</span>
+        <span class="forecast-chip">Mon Nov 23: 29°C/25°C light rain</span>
+        <span class="forecast-chip">Tue Nov 24: 28°C/26°C heavy rain</span>
+        <span class="forecast-chip">Wed Nov 25: 29°C/26°C light rain</span>
+        <span class="forecast-chip">Thu Nov 26: 29°C/26°C cloudy</span>
+      </div>
+    </section>
+
+    <!-- Search, Section Tabs & Live News API Drawer -->
+    <section class="controls-panel" aria-label="Search and Sections">
+      <div class="search-row">
+        <div class="search-input-wrap">
+          <input
+            type="search"
+            id="search-input"
+            class="search-input"
+            placeholder="Search news, tickers (e.g., Ashok Leyland, Marico, Iran)..."
+            aria-label="Search news and topics"
+            autocomplete="off"
+          />
+          <button type="button" class="clear-search-btn" id="btn-clear-search" aria-label="Clear search">✕</button>
+        </div>
+        <button type="button" class="pill-btn-29" id="btn-match-mode" title="Toggle AND/OR search matching">Mode: OR</button>
+        <button type="button" class="pill-btn-29" id="btn-api-drawer" aria-expanded="false">Live API</button>
+      </div>
+
+      <div class="tabs-row" id="section-tabs" role="tablist" aria-label="News Sections">
+        <button type="button" class="section-tab active" data-section="All" role="tab" aria-selected="true">All</button>
+        <button type="button" class="section-tab" data-section="India & Politics" role="tab" aria-selected="false">India &amp; Politics</button>
+        <button type="button" class="section-tab" data-section="Business & Markets" role="tab" aria-selected="false">Business &amp; Markets</button>
+        <button type="button" class="section-tab" data-section="World & Local" role="tab" aria-selected="false">World &amp; Local</button>
+      </div>
+
+      <div class="api-drawer" id="api-drawer" aria-label="Live News API Settings">
+        <div class="api-grid">
+          <label class="field-label">
+            Provider
+            <select id="api-provider" class="field-select">
+              <option value="gnews">GNews</option>
+              <option value="newsdata">NewsData.io</option>
+              <option value="newsapi">NewsAPI.org</option>
+              <option value="proxy">Custom JSON Proxy</option>
+            </select>
+          </label>
+          <label class="field-label">
+            API Key (Optional)
+            <input type="password" id="api-key" class="field-input" placeholder="Paste API key if available" />
+          </label>
+          <label class="field-label">
+            Custom Proxy URL (?q=...)
+            <input type="url" id="api-proxy-url" class="field-input" placeholder="https://example.com/api/news?q=" />
+          </label>
+          <div style="display: flex; gap: 6px;">
+            <button type="button" class="pill-btn-29 active" id="btn-save-api">Save &amp; Query</button>
+            <button type="button" class="pill-btn-29" id="btn-clear-api">Clear</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Persistent Most Visited Topics -->
+    <section class="visited-bar" id="visited-topics-bar" aria-label="Most Visited Topics"></section>
+
+    <!-- Dynamic Search Summary & Multi-Source Links -->
+    <div id="dynamic-search-slot"></div>
+
+    <!-- Conditional Stock Spotlight (Rendered ONLY when search matches a stock/ticker) -->
+    <div id="stock-spotlight-slot"></div>
+
+    <!-- Embedded In-Frame Reader / Search Viewer -->
+    <section class="inframe-viewer" id="inframe-viewer" aria-label="In-Frame Reader and Search Viewer">
+      <div class="inframe-bar">
+        <div class="inframe-meta">
+          <h2 class="inframe-title" id="inframe-title">In-Frame Reader</h2>
+          <div class="inframe-url" id="inframe-url">Select "Load in Frame" on any story or outlet link</div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+          <a class="ext-chip" id="inframe-newtab-link" href="https://www.google.com" target="_blank" rel="noopener noreferrer">Open in New Tab ↗</a>
+          <button type="button" class="pill-btn-29" id="btn-close-inframe">Close Frame</button>
+        </div>
+      </div>
+      <div class="inframe-notice">
+        Outlets or search engines that send <code>X-Frame-Options</code> or restrictive <code>CSP</code> headers may block iframe rendering; use <strong>Open in New Tab</strong> if blank.
+      </div>
+      <div class="inframe-frame-wrap">
+        <iframe
+          id="inframe-iframe"
+          class="inframe-iframe"
+          title="PulseBrief In-Frame Content Viewer"
+          sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+    </section>
+
+    <!-- Main Briefings Feed -->
+    <section aria-label="Briefings Feed">
+      <div class="briefings-grid" id="briefings-grid"></div>
+    </section>
+  </div>
+
+  <!-- Palette Chooser Modal -->
+  <div class="modal-backdrop" id="palette-modal" role="dialog" aria-modal="true" aria-labelledby="palette-modal-title">
+    <div class="modal-card">
+      <div style="display: flex; align-items: center; justify-content: space-between;">
+        <h2 id="palette-modal-title" style="margin: 0; font-size: 15px; font-weight: 700;">Appearance &amp; Palette</h2>
+        <button type="button" class="pill-btn-29" id="btn-close-palette">Close</button>
+      </div>
+      <div style="display: flex; gap: 6px;">
+        <button type="button" class="pill-btn-29" id="btn-polarity-dark">Dark Mode</button>
+        <button type="button" class="pill-btn-29" id="btn-polarity-light">Light Mode</button>
+      </div>
+      <div class="palette-grid" id="palette-options">
+        <button type="button" class="palette-option" data-palette="orangish-ember">
+          <span class="swatch-dot" style="background: #F06424;"></span>Orangish Ember
+        </button>
+        <button type="button" class="palette-option" data-palette="ocean-pulse">
+          <span class="swatch-dot" style="background: #38BDF8;"></span>Ocean Pulse
+        </button>
+        <button type="button" class="palette-option" data-palette="emerald-wire">
+          <span class="swatch-dot" style="background: #34D399;"></span>Emerald Wire
+        </button>
+        <button type="button" class="palette-option" data-palette="violet-signal">
+          <span class="swatch-dot" style="background: #A78BFA;"></span>Violet Signal
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Bar -->
+  <div class="toast-bar" id="toast-bar" role="status" aria-live="polite"></div>
+
+  <script>
+    (function () {
+      "use strict";
+
+      /* ========================================================================
+         1. DATA & CONFIGURATION (SAT, 21 NOV 2026 · CHENNAI)
+         ======================================================================== */
+      const STORAGE_KEYS = {
+        state: "pulsebrief_state_v2026_11_21"
+      };
+
+      const DEFAULT_VISITED_TOPICS = {
+        "Ashok Leyland": 5,
+        "Marico": 4,
+        "Cyclone Akvan": 4,
+        "Sensex & Rupee": 3,
+        "Chennai Weather": 3,
+        "Middle East": 2
+      };
+
+      const STOCK_PROFILES = {
+        ASHOKLEY: {
+          symbol: "ASHOKLEY",
+          name: "Ashok Leyland Ltd.",
+          keywords: ["ashok leyland", "ashokley", "mhcv", "lcv", "switch mobility", "hlfl"],
+          metrics: [
+            { label: "Q2 FY27 Cons. Income", value: "₹17,173.68 Cr (+35.1%)" },
+            { label: "Q2 FY27 Cons. PAT", value: "₹891.45 Cr (+8.8%)" },
+            { label: "Q2 CV Volumes", value: "64,677 units (+32%)" },
+            { label: "14D RSI / 5D MA", value: "45.64 / 163.82" }
+          ],
+          note: "Interim dividend ₹1/share (record date Nov 20, 2026); standalone revenue ₹13,364.28 Cr (+39.4% YoY) with HLFL balance reconciliation focus."
+        },
+        MARICO: {
+          symbol: "MARICO",
+          name: "Marico Ltd.",
+          keywords: ["marico", "parachute", "saffola", "fmcg", "copra"],
+          metrics: [
+            { label: "Q2 FY27 Revenue", value: "₹3,482 Cr (+22% YoY)" },
+            { label: "Q2 FY27 Net Profit", value: "₹437 Cr (+11.5% YoY)" },
+            { label: "India Volume Growth", value: "+7% YoY" },
+            { label: "Gross Margin", value: "47.6% (-330 bps)" }
+          ],
+          note: "Digital-first brands expanded to ~23% of domestic revenue while elevated copra and input costs weighed on near-term gross margins."
+        }
+      };
+
+      const INITIAL_STORIES = [
+        {
+          id: "st-101",
+          headline: "Sensex settles at 83,919.71 and Nifty 50 at 25,800.60 as Rupee tests past 93/USD",
+          summary: "Indian equities closed firm in recent sessions led by select large-caps even as currency softness past 93 per USD and foreign outflows kept broader sentiment selective.",
+          source: "Business Standard",
+          section: "Business & Markets",
+          time: "21 Nov 2026 · 14:40 IST",
+          url: "https://www.business-standard.com/markets",
+          tags: ["sensex", "nifty", "rupee", "93", "markets", "india"]
+        },
+        {
+          id: "st-102",
+          headline: "Ashok Leyland posts Q2 FY27 revenue up 35.1% YoY as CV volumes reach 64,677 units",
+          summary: "Consolidated total income hit ₹17,173.68 crore and net profit rose 8.8% YoY to ₹891.45 crore, supported by 32% commercial vehicle volume growth and a ₹1/share interim dividend.",
+          source: "ET Wealth",
+          section: "Business & Markets",
+          time: "21 Nov 2026 · 13:15 IST",
+          url: "https://economictimes.indiatimes.com/wealth",
+          tags: ["ashok leyland", "ashokley", "q2 fy27", "cv", "dividend", "markets"]
+        },
+        {
+          id: "st-103",
+          headline: "Marico Q2 FY27 revenue rises 22% YoY to ₹3,482 crore; digital brands reach ~23% mix",
+          summary: "Marico reported 7% India volume growth and ₹437 crore net profit in Q2 FY27 as Parachute and Saffola navigated elevated copra prices while digital-first lines scaled.",
+          source: "Business Standard",
+          section: "Business & Markets",
+          time: "21 Nov 2026 · 11:50 IST",
+          url: "https://www.business-standard.com/companies",
+          tags: ["marico", "fmcg", "q2 fy27", "parachute", "saffola", "copra"]
+        },
+        {
+          id: "st-104",
+          headline: "Cyclone Akvan weakens after coastal landfall; Tamil Nadu sees dry spell ahead of rain",
+          summary: "Remnants of Cyclone Akvan shifted toward eastern India while Chennai stays mostly cloudy at 30°C today before rain chances pick up from Monday through Wednesday.",
+          source: "The Indian Express",
+          section: "World & Local",
+          time: "21 Nov 2026 · 15:05 IST",
+          url: "https://indianexpress.com/section/cities/chennai/",
+          tags: ["cyclone akvan", "chennai", "weather", "rain", "tamil nadu", "local"]
+        },
+        {
+          id: "st-105",
+          headline: "Middle East tensions intensify with drone strikes and regional security alerts",
+          summary: "Fresh drone incidents and heightened defensive posture across Gulf shipping corridors continue to draw global diplomatic and energy market scrutiny.",
+          source: "CNN",
+          section: "World & Local",
+          time: "21 Nov 2026 · 14:10 IST",
+          url: "https://edition.cnn.com/world",
+          tags: ["middle east", "iran", "drone", "world", "geopolitics"]
+        },
+        {
+          id: "st-106",
+          headline: "Parliamentary & state policy updates: focus on infra capex, trade and fiscal discipline",
+          summary: "Policy desks track capital expenditure execution, export competitiveness, and state-level governance priorities across key Indian corridors.",
+          source: "BBC News",
+          section: "India & Politics",
+          time: "21 Nov 2026 · 12:30 IST",
+          url: "https://www.bbc.com/news/world/asia/india",
+          tags: ["india", "politics", "policy", "capex", "trade"]
+        }
+      ];
+
+      const state = {
+        section: "All",
+        query: "",
+        mode: "OR",
+        savedOnly: false,
+        visitedTopics: Object.assign({}, DEFAULT_VISITED_TOPICS),
+        savedIds: [],
+        palette: "orangish-ember",
+        polarity: "dark",
+        apiProvider: "gnews",
+        apiKey: "",
+        apiProxyUrl: "",
+        liveArticles: [],
+        liveStatus: "Local Ready",
+        liveNote: "Type a query to filter strictly to matching items (350ms debounce) or query a configured Live API.",
+        frameUrl: "",
+        frameTitle: ""
+      };
+
+      let searchDebounceTimer = null;
+      let toastTimer = null;
+
+      /* ========================================================================
+         2. HELPERS & STORAGE
+         ======================================================================== */
+      function $(id) {
+        return document.getElementById(id);
+      }
+
+      function showToast(msg) {
+        const bar = $("toast-bar");
+        if (!bar) return;
+        bar.textContent = String(msg || "");
+        bar.classList.add("show");
+        if (toastTimer) clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => {
+          bar.classList.remove("show");
+        }, 2400);
+      }
+
+      function escapeHtml(str) {
+        return String(str || "")
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#39;");
+      }
+
+      function escapeAttr(str) {
+        return escapeHtml(str).replace(/`/g, "&#96;");
+      }
+
+      function googleSearchUrl(q) {
+        return "https://www.google.com/search?q=" + encodeURIComponent(String(q || "").trim());
+      }
+
+      function normalizeExternalUrl(rawUrl, fallbackQuery) {
+        const clean = String(rawUrl || "").trim();
+        if (/^https?:\/\//i.test(clean)) {
+          return clean;
+        }
+        return googleSearchUrl(fallbackQuery || "PulseBrief news November 21 2026");
+      }
+
+      function saveStateToStorage() {
+        try {
+          const payload = {
+            palette: state.palette,
+            polarity: state.polarity,
+            savedIds: state.savedIds,
+            visitedTopics: state.visitedTopics,
+            apiProvider: state.apiProvider,
+            apiKey: state.apiKey,
+            apiProxyUrl: state.apiProxyUrl
+          };
+          localStorage.setItem(STORAGE_KEYS.state, JSON.stringify(payload));
+        } catch (_err) {
+          // Ignore storage quota or sandbox errors
+        }
+      }
+
+      function loadStateFromStorage() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEYS.state);
+          if (!raw) return;
+          const parsed = JSON.parse(raw);
+          if (parsed && typeof parsed === "object") {
+            if (parsed.palette) state.palette = parsed.palette;
+            if (parsed.polarity) state.polarity = parsed.polarity;
+            if (Array.isArray(parsed.savedIds)) state.savedIds = parsed.savedIds.slice(0, 100);
+            if (parsed.visitedTopics && typeof parsed.visitedTopics === "object") {
+              state.visitedTopics = Object.assign({}, DEFAULT_VISITED_TOPICS, parsed.visitedTopics);
+            }
+            if (parsed.apiProvider) state.apiProvider = parsed.apiProvider;
+            if (typeof parsed.apiKey === "string") state.apiKey = parsed.apiKey;
+            if (typeof parsed.apiProxyUrl === "string") state.apiProxyUrl = parsed.apiProxyUrl;
+          }
+        } catch (_err) {
+          // Fallback to defaults
+        }
+      }
+
+      /* ========================================================================
+         3. IN-FRAME READER & THEME CONTROLS
+         ======================================================================== */
+      function openInFrame(rawUrl, title) {
+        const safeUrl = normalizeExternalUrl(rawUrl, title || state.query);
+        const cleanTitle = String(title || "Embedded Briefing").trim() || "Embedded Briefing";
+        state.frameUrl = safeUrl;
+        state.frameTitle = cleanTitle;
+
+        const viewer = $("inframe-viewer");
+        const iframe = $("inframe-iframe");
+        const titleEl = $("inframe-title");
+        const urlEl = $("inframe-url");
+        const linkEl = $("inframe-newtab-link");
+
+        if (titleEl) titleEl.textContent = cleanTitle;
+        if (urlEl) urlEl.textContent = safeUrl;
+        if (linkEl) linkEl.href = safeUrl;
+        if (iframe) iframe.src = safeUrl;
+        if (viewer) {
+          viewer.classList.add("open");
+          try {
+            viewer.scrollIntoView({ behavior: "smooth", block: "nearest" });
+          } catch (_err) {
+            // Ignore scroll errors
+          }
+        }
+        showToast("Opened in frame: " + cleanTitle);
+      }
+
+      function closeInFrame() {
+        state.frameUrl = "";
+        state.frameTitle = "";
+        const viewer = $("inframe-viewer");
+        const iframe = $("inframe-iframe");
+        if (viewer) viewer.classList.remove("open");
+        if (iframe) iframe.src = "about:blank";
+      }
+
+      function applyTheme() {
+        document.documentElement.setAttribute("data-palette", state.palette);
+        document.documentElement.setAttribute("data-polarity", state.polarity);
+
+        document.querySelectorAll("#palette-options .palette-option").forEach((btn) => {
+          btn.classList.toggle("active", btn.getAttribute("data-palette") === state.palette);
+        });
+
+        const darkBtn = $("btn-polarity-dark");
+        const lightBtn = $("btn-polarity-light");
+        if (darkBtn) darkBtn.classList.toggle("active", state.polarity === "dark");
+        if (lightBtn) lightBtn.classList.toggle("active", state.polarity === "light");
+      }
+
+      function recordTopicVisit(topic) {
+        const clean = String(topic || "").trim();
+        if (!clean) return;
+        const current = Number(state.visitedTopics[clean] || 0);
+        state.visitedTopics[clean] = current + 1;
+        saveStateToStorage();
+        renderVisitedTopics();
+      }
+
+      /* ========================================================================
+         4. STRICT QUERY FILTERING & LIVE NEWS API ADAPTER
+         ======================================================================== */
+      function getCombinedStories() {
+        return [...state.liveArticles, ...INITIAL_STORIES];
+      }
+
+      function matchesQuery(story, rawQuery, mode) {
+        const q = String(rawQuery || "").trim().toLowerCase();
+        if (!q) return true;
+
+        const terms = q.split(/\s+/).filter(Boolean);
+        if (!terms.length) return true;
+
+        const haystack = [
+          story.headline,
+          story.summary,
+          story.source,
+          story.section,
+          ...(Array.isArray(story.tags) ? story.tags : [])
+        ]
+          .join(" ")
+          .toLowerCase();
+
+        if (mode === "AND") {
+          return terms.every((t) => haystack.includes(t));
+        }
+        return terms.some((t) => haystack.includes(t));
+      }
+
+      function findMatchedStockProfile(rawQuery) {
+        const q = String(rawQuery || "").trim().toLowerCase();
+        if (!q) return null;
+
+        for (const key of Object.keys(STOCK_PROFILES)) {
+          const prof = STOCK_PROFILES[key];
+          if (
+            q === prof.symbol.toLowerCase() ||
+            prof.keywords.some((kw) => q.includes(kw) || kw.includes(q))
+          ) {
+            return prof;
+          }
+        }
+        return null;
+      }
+
+      function highlightText(text, rawQuery) {
+        const safe = escapeHtml(text);
+        const q = String(rawQuery || "").trim();
+        if (!q) return safe;
+
+        const terms = q
+          .split(/\s+/)
+          .map((t) => t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"))
+          .filter(Boolean);
+
+        if (!terms.length) return safe;
+        const regex = new RegExp("(" + terms.join("|") + ")", "gi");
+        return safe.replace(regex, "<mark>$1</mark>");
+      }
+
+      function normalizeApiArticles(data, provider) {
+        let rawList = [];
+        if (Array.isArray(data)) {
+          rawList = data;
+        } else if (data && Array.isArray(data.articles)) {
+          rawList = data.articles;
+        } else if (data && Array.isArray(data.results)) {
+          rawList = data.results;
+        } else if (data && data.data && Array.isArray(data.data.articles)) {
+          rawList = data.data.articles;
+        }
+
+        return rawList.slice(0, 8).map((item, idx) => {
+          const title = item.title || item.headline || "Live Briefing Result";
+          const desc = item.description || item.summary || item.content || "Fetched via live news provider.";
+          const srcName =
+            (item.source && (item.source.name || item.source)) ||
+            item.source_id ||
+            provider.toUpperCase();
+          const link = item.url || item.link || googleSearchUrl(title);
+          return {
+            id: "live-" + provider + "-" + idx + "-" + Math.abs(title.length * 31 + idx),
+            headline: String(title),
+            summary: String(desc),
+            source: String(srcName),
+            section: "Business & Markets",
+            time: "Sat, 21 Nov 2026 · Live API",
+            url: normalizeExternalUrl(link, title),
+            tags: ["live", provider, title.toLowerCase()]
+          };
+        });
+      }
+
+      async function executeLiveApiSearch(query) {
+        const q = String(query || "").trim();
+        if (!q) {
+          state.liveArticles = [];
+          state.liveStatus = "Local Ready";
+          state.liveNote = "Type a query to filter strictly to matching items (350ms debounce) or query a configured Live API.";
+          renderAll();
+          return;
+        }
+
+        const hasProxy = Boolean(String(state.apiProxyUrl || "").trim());
+        const hasKey = Boolean(String(state.apiKey || "").trim());
+
+        if (!hasProxy && !hasKey) {
+          state.liveStatus = "Local Strict Filter";
+          state.liveNote = "No API key or proxy configured; showing strictly matching items plus outlet search links.";
+          renderAll();
+          return;
+        }
+
+        state.liveStatus = "Fetching...";
+        state.liveNote = "Querying " + state.apiProvider + " for \"" + q + "\"...";
+        renderSearchSummaryAndStock();
+
+        let endpoint = "";
+        if (hasProxy) {
+          const base = String(state.apiProxyUrl).trim();
+          endpoint = base.includes("?")
+            ? base + encodeURIComponent(q)
+            : base + (base.endsWith("=") ? encodeURIComponent(q) : "?q=" + encodeURIComponent(q));
+        } else if (state.apiProvider === "gnews") {
+          endpoint =
+            "https://gnews.io/api/v4/search?q=" +
+            encodeURIComponent(q) +
+            "&lang=en&max=8&apikey=" +
+            encodeURIComponent(state.apiKey.trim());
+        } else if (state.apiProvider === "newsdata") {
+          endpoint =
+            "https://newsdata.io/api/1/news?q=" +
+            encodeURIComponent(q) +
+            "&language=en&apikey=" +
+            encodeURIComponent(state.apiKey.trim());
+        } else if (state.apiProvider === "newsapi") {
+          endpoint =
+            "https://newsapi.org/v2/everything?q=" +
+            encodeURIComponent(q) +
+            "&pageSize=8&apiKey=" +
+            encodeURIComponent(state.apiKey.trim());
+        }
+
+        try {
+          const res = await fetch(endpoint);
+          if (!res.ok) {
+            throw new Error("HTTP " + res.status);
+          }
+          const json = await res.json();
+          const normalized = normalizeApiArticles(json, state.apiProvider);
+          state.liveArticles = normalized;
+          state.liveStatus = "Live API (" + normalized.length + ")";
+          state.liveNote = "Fetched " + normalized.length + " live items for \"" + q + "\".";
+        } catch (_err) {
+          state.liveArticles = [];
+          state.liveStatus = "Fallback Filter";
+          state.liveNote =
+            "Live API request was blocked or unavailable; showing strictly matching local items and outlet search links.";
+        }
+
+        renderAll();
+      }
+
+      function scheduleSearch(query) {
+        state.query = String(query || "");
+        if (searchDebounceTimer) {
+          clearTimeout(searchDebounceTimer);
+        }
+        searchDebounceTimer = setTimeout(() => {
+          const trimmed = state.query.trim();
+          if (!trimmed) {
+            state.liveArticles = [];
+            state.liveStatus = "Local Ready";
+            state.liveNote = "Type a query to filter strictly to matching items (350ms debounce) or query a configured Live API.";
+            renderAll();
+            return;
+          }
+          recordTopicVisit(trimmed);
+          executeLiveApiSearch(trimmed);
+        }, 350);
+      }
+
+      /* ========================================================================
+         5. RENDERING FUNCTIONS
+         ======================================================================== */
+      function renderTabsAndSavedCount() {
+        const countEl = $("saved-count-label");
+        if (countEl) countEl.textContent = String(state.savedIds.length);
+
+        const savedBtn = $("btn-saved-toggle");
+        if (savedBtn) {
+          savedBtn.classList.toggle("active", state.savedOnly);
+          savedBtn.setAttribute("aria-pressed", state.savedOnly ? "true" : "false");
+        }
+
+        const modeBtn = $("btn-match-mode");
+        if (modeBtn) {
+          modeBtn.textContent = "Mode: " + state.mode;
+        }
+
+        document.querySelectorAll("#section-tabs .section-tab").forEach((tab) => {
+          const sec = tab.getAttribute("data-section");
+          const isActive = sec === state.section;
+          tab.classList.toggle("active", isActive);
+          tab.setAttribute("aria-selected", isActive ? "true" : "false");
+        });
+      }
+
+      function renderVisitedTopics() {
+        const bar = $("visited-topics-bar");
+        if (!bar) return;
+
+        const entries = Object.entries(state.visitedTopics)
+          .sort((a, b) => Number(b[1]) - Number(a[1]))
+          .slice(0, 6);
+
+        if (!entries.length) {
+          bar.innerHTML = `<span class="visited-label">Most Visited</span><span style="font-size:12px;color:var(--text-muted);">No topic history yet.</span>`;
+          return;
+        }
+
+        bar.innerHTML =
+          `<span class="visited-label">Most Visited</span>` +
+          entries
+            .map(
+              ([topic, count]) => `
+                <button type="button" class="topic-chip" data-topic-chip="${escapeAttr(topic)}">
+                  <span>${escapeHtml(topic)}</span>
+                  <span class="topic-count">${Number(count)}</span>
+                </button>
+              `
+            )
+            .join("");
+
+        bar.querySelectorAll("[data-topic-chip]").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const topic = btn.getAttribute("data-topic-chip") || "";
+            const input = $("search-input");
+            if (input) input.value = topic;
+            state.savedOnly = false;
+            scheduleSearch(topic);
+          });
+        });
+      }
+
+      function getFilteredStories() {
+        const q = state.query.trim();
+        const combined = getCombinedStories();
+
+        return combined.filter((story) => {
+          if (state.savedOnly && !state.savedIds.includes(story.id)) {
+            return false;
+          }
+          // When searching a specific query across the app, search across all sections unless user explicitly filtered saved items
+          if (!q && state.section !== "All" && story.section !== state.section) {
+            return false;
+          }
+          if (q && !matchesQuery(story, q, state.mode)) {
+            return false;
+          }
+          return true;
+        });
+      }
+
+      function renderSearchSummaryAndStock(matchedCount) {
+        const slot = $("dynamic-search-slot");
+        const stockSlot = $("stock-spotlight-slot");
+        const q = state.query.trim();
+
+        if (!q) {
+          if (slot) slot.innerHTML = "";
+          if (stockSlot) stockSlot.innerHTML = "";
+          return;
+        }
+
+        const count = typeof matchedCount === "number" ? matchedCount : getFilteredStories().length;
+
+        const outletLinks = [
+          { label: "Google News", url: googleSearchUrl(q + " news November 21 2026") },
+          { label: "CNN", url: googleSearchUrl(q + " site:cnn.com") },
+          { label: "BBC News", url: googleSearchUrl(q + " site:bbc.com/news") },
+          { label: "Business Standard", url: googleSearchUrl(q + " site:business-standard.com") },
+          { label: "ET Wealth", url: googleSearchUrl(q + " site:economictimes.indiatimes.com/wealth") },
+          { label: "The Indian Express", url: googleSearchUrl(q + " site:indianexpress.com") }
+        ];
+
+        if (slot) {
+          slot.innerHTML = `
+            <div class="live-search-bar" aria-label="Search results summary and outlet links">
+              <div class="live-search-top">
+                <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+                  <span class="synth-badge">${escapeHtml(state.liveStatus)}</span>
+                  <h2 class="live-search-title">Search: "${escapeHtml(q)}" (${count} match${count === 1 ? "" : "es"})</h2>
+                </div>
+                <button type="button" class="pill-btn-29" id="btn-reset-query">Clear Query</button>
+              </div>
+              <p class="synth-body">${escapeHtml(state.liveNote)}</p>
+              <div class="link-strip">
+                ${outletLinks
+                  .map(
+                    (lnk, idx) => `
+                      <span class="ext-chip">
+                        <a href="${escapeAttr(lnk.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(lnk.label)} ↗</a>
+                        <button type="button" class="frame-action-btn" data-outlet-frame-idx="${idx}">Load in Frame</button>
+                      </span>
+                    `
+                  )
+                  .join("")}
+              </div>
+            </div>
+          `;
+
+          const resetBtn = $("btn-reset-query");
+          if (resetBtn) {
+            resetBtn.addEventListener("click", () => {
+              const input = $("search-input");
+              if (input) input.value = "";
+              state.query = "";
+              state.liveArticles = [];
+              state.liveStatus = "Local Ready";
+              renderAll();
+            });
+          }
+
+          slot.querySelectorAll("[data-outlet-frame-idx]").forEach((btn) => {
+            btn.addEventListener("click", (evt) => {
+              evt.preventDefault();
+              evt.stopPropagation();
+              const idx = Number(btn.getAttribute("data-outlet-frame-idx"));
+              const item = outletLinks[idx];
+              if (item) {
+                openInFrame(item.url, item.label + ": " + q);
+              }
+            });
+          });
+        }
+
+        // Strict stock isolation: only render the stock card that matches the searched query
+        if (stockSlot) {
+          const matchedStock = findMatchedStockProfile(q);
+          if (!matchedStock) {
+            stockSlot.innerHTML = "";
+          } else {
+            stockSlot.innerHTML = `
+              <section class="stock-spotlight" aria-label="${escapeAttr(matchedStock.name)} Snapshot">
+                <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;">
+                  <div>
+                    <span class="synth-badge">${escapeHtml(matchedStock.symbol)}</span>
+                    <strong style="margin-left:6px;font-size:14px;">${escapeHtml(matchedStock.name)}</strong>
+                  </div>
+                  <button type="button" class="frame-action-btn" id="btn-stock-inframe">Load Market Search in Frame</button>
+                </div>
+                <div class="stock-metrics">
+                  ${matchedStock.metrics
+                    .map(
+                      (m) => `
+                        <div class="metric-box">
+                          <div class="metric-label">${escapeHtml(m.label)}</div>
+                          <div class="metric-val">${escapeHtml(m.value)}</div>
+                        </div>
+                      `
+                    )
+                    .join("")}
+                </div>
+                <p class="synth-body">${escapeHtml(matchedStock.note)}</p>
+              </section>
+            `;
+
+            const stockFrameBtn = $("btn-stock-inframe");
+            if (stockFrameBtn) {
+              stockFrameBtn.addEventListener("click", () => {
+                openInFrame(
+                  googleSearchUrl(matchedStock.name + " " + matchedStock.symbol + " Q2 FY27 results"),
+                  matchedStock.name + " (" + matchedStock.symbol + ")"
+                );
+              });
+            }
+          }
+        }
+      }
+
+      function toggleBookmark(id) {
+        if (!id) return;
+        const idx = state.savedIds.indexOf(id);
+        if (idx >= 0) {
+          state.savedIds.splice(idx, 1);
+          showToast("Removed from Saved");
+        } else {
+          state.savedIds.unshift(id);
+          showToast("Saved briefing");
+        }
+        saveStateToStorage();
+        renderTabsAndSavedCount();
+        renderGrid();
+      }
+
+      function renderGrid() {
+        const grid = $("briefings-grid");
+        if (!grid) return;
+
+        const filtered = getFilteredStories();
+        const q = state.query.trim();
+
+        renderSearchSummaryAndStock(filtered.length);
+
+        if (!filtered.length) {
+          grid.innerHTML = `
+            <div class="empty-state" style="grid-column: 1 / -1;">
+              <p style="margin:0 0 8px;font-weight:700;color:var(--text-primary);">No matching briefings found${q ? ' for "' + escapeHtml(q) + '"' : ""}.</p>
+              <p style="margin:0;font-size:12px;">Try another keyword or use the outlet search links above to inspect external coverage in the frame or a new tab.</p>
+            </div>
+          `;
+          return;
+        }
+
+        grid.innerHTML = filtered
+          .map((story) => {
+            const isSaved = state.savedIds.includes(story.id);
+            return `
+              <article class="story-card">
+                <div>
+                  <div class="card-top">
+                    <span class="source-tag">${escapeHtml(story.source)}</span>
+                    <span class="section-tag">${escapeHtml(story.section)}</span>
+                  </div>
+                  <h3 class="story-headline" style="margin-top:7px;">${highlightText(story.headline, q)}</h3>
+                  <p class="story-summary" style="margin-top:5px;">${highlightText(story.summary, q)}</p>
+                </div>
+                <div class="card-footer">
+                  <span class="card-time">${escapeHtml(story.time)}</span>
+                  <div class="card-actions">
+                    <button
+                      type="button"
+                      class="bookmark-btn ${isSaved ? "saved" : ""}"
+                      data-bookmark-id="${escapeAttr(story.id)}"
+                    >
+                      ${isSaved ? "Saved ✓" : "Save"}
+                    </button>
+                    <button
+                      type="button"
+                      class="frame-action-btn"
+                      data-frame-story-id="${escapeAttr(story.id)}"
+                    >
+                      Load in Frame
+                    </button>
+                    <a
+                      class="read-link"
+                      href="${escapeAttr(story.url)}"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Open ↗
+                    </a>
+                  </div>
+                </div>
+              </article>
+            `;
+          })
+          .join("");
+
+        grid.querySelectorAll("[data-bookmark-id]").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            toggleBookmark(btn.getAttribute("data-bookmark-id"));
+          });
+        });
+
+        grid.querySelectorAll("[data-frame-story-id]").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const id = btn.getAttribute("data-frame-story-id");
+            const found = getCombinedStories().find((s) => s.id === id);
+            if (found) {
+              openInFrame(found.url, found.headline);
+            }
+          });
+        });
+      }
+
+      function renderAll() {
+        applyTheme();
+        renderTabsAndSavedCount();
+        renderVisitedTopics();
+        renderGrid();
+      }
+
+      /* ========================================================================
+         6. REFRESH HANDLER & EVENT BINDING
+         ======================================================================== */
+      function runRefresh(isInitial) {
+        try {
+          const badge = $("live-datetime-badge");
+          if (badge) {
+            badge.textContent = "Sat, 21 Nov 2026 · 3:30 PM IST · Chennai";
+          }
+
+          if (state.query.trim()) {
+            executeLiveApiSearch(state.query.trim());
+          } else {
+            renderAll();
+          }
+
+          if (!isInitial) {
+            showToast("PulseBrief refreshed · Sat, 21 Nov 2026");
+          }
+        } catch (_err) {
+          renderAll();
+          showToast("Refreshed with local state");
+        }
+      }
+
+      function bindEvents() {
+        const searchInput = $("search-input");
+        if (searchInput) {
+          searchInput.addEventListener("input", (e) => {
+            scheduleSearch(e.target.value);
+          });
+          searchInput.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") {
+              e.preventDefault();
+              if (searchDebounceTimer) clearTimeout(searchDebounceTimer);
+              const q = searchInput.value.trim();
+              state.query = q;
+              if (q) {
+                recordTopicVisit(q);
+                executeLiveApiSearch(q);
+              } else {
+                state.liveArticles = [];
+                renderAll();
+              }
+            }
+          });
+        }
+
+        const clearBtn = $("btn-clear-search");
+        if (clearBtn) {
+          clearBtn.addEventListener("click", () => {
+            if (searchDebounceTimer) clearTimeout(searchDebounceTimer);
+            const input = $("search-input");
+            if (input) input.value = "";
+            state.query = "";
+            state.liveArticles = [];
+            state.liveStatus = "Local Ready";
+            renderAll();
+          });
+        }
+
+        const modeBtn = $("btn-match-mode");
+        if (modeBtn) {
+          modeBtn.addEventListener("click", () => {
+            state.mode = state.mode === "OR" ? "AND" : "OR";
+            renderAll();
+          });
+        }
+
+        document.querySelectorAll("#section-tabs .section-tab").forEach((tab) => {
+          tab.addEventListener("click", () => {
+            state.section = tab.getAttribute("data-section") || "All";
+            state.savedOnly = false;
+            renderAll();
+          });
+        });
+
+        const savedToggle = $("btn-saved-toggle");
+        if (savedToggle) {
+          savedToggle.addEventListener("click", () => {
+            state.savedOnly = !state.savedOnly;
+            renderAll();
+          });
+        }
+
+        const refreshBtn = $("btn-refresh");
+        if (refreshBtn) {
+          refreshBtn.addEventListener("click", () => runRefresh(false));
+        }
+
+        // API Drawer
+        const apiBtn = $("btn-api-drawer");
+        const apiDrawer = $("api-drawer");
+        if (apiBtn && apiDrawer) {
+          apiBtn.addEventListener("click", () => {
+            const willOpen = !apiDrawer.classList.contains("open");
+            apiDrawer.classList.toggle("open", willOpen);
+            apiBtn.setAttribute("aria-expanded", willOpen ? "true" : "false");
+          });
+        }
+
+        const providerSel = $("api-provider");
+        const keyInput = $("api-key");
+        const proxyInput = $("api-proxy-url");
+        if (providerSel) providerSel.value = state.apiProvider;
+        if (keyInput) keyInput.value = state.apiKey;
+        if (proxyInput) proxyInput.value = state.apiProxyUrl;
+
+        const saveApiBtn = $("btn-save-api");
+        if (saveApiBtn) {
+          saveApiBtn.addEventListener("click", () => {
+            state.apiProvider = providerSel ? providerSel.value : "gnews";
+            state.apiKey = keyInput ? keyInput.value.trim() : "";
+            state.apiProxyUrl = proxyInput ? proxyInput.value.trim() : "";
+            saveStateToStorage();
+            showToast("Saved Live API settings");
+            if (state.query.trim()) {
+              executeLiveApiSearch(state.query.trim());
+            }
+          });
+        }
+
+        const clearApiBtn = $("btn-clear-api");
+        if (clearApiBtn) {
+          clearApiBtn.addEventListener("click", () => {
+            state.apiKey = "";
+            state.apiProxyUrl = "";
+            if (keyInput) keyInput.value = "";
+            if (proxyInput) proxyInput.value = "";
+            saveStateToStorage();
+            showToast("Cleared API settings");
+            renderAll();
+          });
+        }
+
+        // Palette Modal
+        const paletteModal = $("palette-modal");
+        const openPaletteBtn = $("btn-palette-open");
+        const closePaletteBtn = $("btn-close-palette");
+        if (openPaletteBtn && paletteModal) {
+          openPaletteBtn.addEventListener("click", () => {
+            paletteModal.classList.add("open");
+          });
+        }
+        if (closePaletteBtn && paletteModal) {
+          closePaletteBtn.addEventListener("click", () => {
+            paletteModal.classList.remove("open");
+          });
+        }
+        if (paletteModal) {
+          paletteModal.addEventListener("click", (e) => {
+            if (e.target === paletteModal) {
+              paletteModal.classList.remove("open");
+            }
+          });
+        }
+
+        const darkBtn = $("btn-polarity-dark");
+        const lightBtn = $("btn-polarity-light");
+        if (darkBtn) {
+          darkBtn.addEventListener("click", () => {
+            state.polarity = "dark";
+            saveStateToStorage();
+            applyTheme();
+          });
+        }
+        if (lightBtn) {
+          lightBtn.addEventListener("click", () => {
+            state.polarity = "light";
+            saveStateToStorage();
+            applyTheme();
+          });
+        }
+
+        document.querySelectorAll("#palette-options .palette-option").forEach((opt) => {
+          opt.addEventListener("click", () => {
+            state.palette = opt.getAttribute("data-palette") || "orangish-ember";
+            saveStateToStorage();
+            applyTheme();
+          });
+        });
+
+        // In-Frame Reader close button
+        const closeFrameBtn = $("btn-close-inframe");
+        if (closeFrameBtn) {
+          closeFrameBtn.addEventListener("click", closeInFrame);
+        }
+      }
+
+      /* ========================================================================
+         7. INITIALIZATION
+         ======================================================================== */
+      window.addEventListener("DOMContentLoaded", function () {
+        loadStateFromStorage();
+        bindEvents();
+        runRefresh(true);
+      });
+    })();
+  </script>
+</body>
+</html>
